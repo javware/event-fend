@@ -43,8 +43,8 @@ export default function header({  setCloseSidebar, closeSidebar }: HeaderProps) 
 
             <div className="flex gap-5 items-center">
                 <form className="flex relative">
-                    <RiSearch2Line className="absolute text-gray-600 left-2 top-1/2 transform -translate-y-1/2 hidden sm:block" />
-                    <input type="text" className="bg-gray-100 text-gray-500 text-sm pl-8 pr-4 h-9 rounded-lg focus:outline-none hidden sm:block" placeholder="Buscar..." />
+                    <RiSearch2Line className="absolute text-gray-600 left-2 top-1/2 transform -translate-y-1/2 hidden lg:block" />
+                    <input type="text" className="bg-gray-100 text-gray-500 text-sm pl-8 pr-4 h-9 rounded-lg focus:outline-none hidden lg:block" placeholder="Buscar..." />
                 </form>
 
                 <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-gray-100 cursor-pointer">

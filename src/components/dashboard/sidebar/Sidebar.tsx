@@ -10,9 +10,11 @@ type SiderProps = {
   setCloseSidebar: React.Dispatch<React.SetStateAction<boolean>>
 }
 export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
+   
+
   return (
 
-    <div className={`fixed rela z-20 w-full md:w-[18.5rem] border-r p-4 bg-white transition-transform duration-300 ${closeSidebar ? 'translate-x-0' : '-translate-x-full'} `}>
+    <div className={`fixed z-20  w-screen md:w-[18.5rem] border-r p-4 bg-white transition-transform duration-300 ${closeSidebar ? 'translate-x-0' : '-translate-x-full'} `}>
       <div className='flex items-center justify-between text-2xl py-3'>
         <div className='flex items-center gap-2'>
           <img src="/logo1.png" className='w-10' alt="" />
