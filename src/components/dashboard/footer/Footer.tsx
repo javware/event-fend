@@ -10,7 +10,7 @@ export default function footer() {
                 <h3 className="text-gray-300">Contacto</h3>
             </div>
 
-            <div className="flex  items-center gap-3 text-2xl">
+            <div className="flex items-center gap-3 text-2xl">
                 <PiFacebookLogoLight />
                 <PiTiktokLogoLight />
                 <PiYoutubeLogoLight />
