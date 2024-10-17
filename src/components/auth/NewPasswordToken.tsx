@@ -18,7 +18,7 @@ export default function NewPasswordToken({ token, setToken }: NewPasswordTokenPr
 
     return (
         <>
-            <form className="space-y-8 mt-8">
+            <form className="space-y-6 mt-3">
                 <label className="font-normal text-2xl text-center block">Código de 6 dígitos</label>
                 <div className="flex justify-center gap-3">
                     <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
@@ -31,7 +31,7 @@ export default function NewPasswordToken({ token, setToken }: NewPasswordTokenPr
                     </PinInput>
                 </div>
             </form>
-            <nav className="mt-10 flex flex-col space-y-4">
+            <nav className="mt-7 flex flex-col space-y-4">
                 <Link to={'/auth/forgot-password'} className="text-center font-normal underline"
                 >Solicitar un nuevo Código</Link>
             </nav>

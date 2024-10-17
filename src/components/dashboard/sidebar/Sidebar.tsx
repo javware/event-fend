@@ -13,7 +13,6 @@ type SiderProps = {
 }
 export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
   const size = useWindowSize();
-  console.log(closeSidebar)
 
   return (
     <>

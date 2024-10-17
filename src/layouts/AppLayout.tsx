@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom'
 // import { ToastContainer } from 'react-toastify'
 // import 'react-toastify/dist/ReactToastify.css'
-import { useAuth } from '../hooks/useAuth';
-import Spinner from '../components/Spinner';
+// import { useAuth } from '../hooks/useAuth';
+// import Spinner from '../components/Spinner';
 import Sidebar from '../components/dashboard/sidebar/Sidebar';
 import Header from '../components/dashboard/header/Header';
 import Footer from '../components/dashboard/footer/Footer';
@@ -13,10 +13,8 @@ import { useWindowSize } from '../hooks/useWindowSize';
 export default function AppLayout() {
     const size = useWindowSize();
     const [closeSidebar, setCloseSidebar] = useState<boolean>(true)
-    const { data, isError, isLoading } = useAuth()
-    console.log(data)
-    console.log(isError)
-    if (isLoading) return <Spinner />
+    // const { data, isError, isLoading } = useAuth()
+    // if (isLoading) return <Spinner />
 
     // if (isError) {
     //     const redirectPath = window.location.pathname

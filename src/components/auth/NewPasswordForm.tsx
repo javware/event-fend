@@ -5,7 +5,7 @@ import Input from "../Input";
 export default function NewPasswordForm() {
 
     const initialValues: NewPasswordForm = {
-        email: '',
+        correo: '',
         password: '',
         password_confirmation: '',
     }
@@ -29,7 +29,7 @@ export default function NewPasswordForm() {
     const handleNewPassword = (formData: NewPasswordForm) => {
         const data = {
             ...formData,
-            email: localStorage.getItem('forgotEmailUser') || formData.email,
+            email: localStorage.getItem('forgotEmailUser') || formData.correo,
         }
         console.log(data)
         // mutate(data)
@@ -38,7 +38,7 @@ export default function NewPasswordForm() {
     const password = watch('password');
 
     return (
-        <form onSubmit={handleSubmit(handleNewPassword)} className="space-y-4 p-6" noValidate >
+        <form onSubmit={handleSubmit(handleNewPassword)} className="space-y-4 pt-6 p-4 lg:p-6" noValidate >
             <Input id="password" label="Contraseña" type="password" placeholder="Password de Registro"
                 error={errors.password}
                 register={register("password", {

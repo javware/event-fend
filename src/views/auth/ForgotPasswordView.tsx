@@ -9,7 +9,7 @@ import Input from "../../components/Input";
 export default function ForgotPasswordView() {
   // const navigate = useNavigate()
   const initialValues: ForgotPasswordForm = {
-    email: ''
+    correo: ''
   }
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
@@ -40,14 +40,14 @@ export default function ForgotPasswordView() {
         ¡Olvidaste tu password? coloca tu email y {''}
         <span className=" text-red-600 font-bold">reestablece tu password</span>
       </p>
-      <form onSubmit={handleSubmit(handleForgotPassword)} className="space-y-4 p-6 " noValidate>
-        <Input id="email" label="Correo electrónico" type="email" placeholder="email"
-          error={errors.email}
-          register={register("email", {
+      <form onSubmit={handleSubmit(handleForgotPassword)} className="space-y-4 pt-6 p-4 lg:p-6 " noValidate>
+        <Input id="correo" label="Correo electrónico" type="correo" placeholder="correo"
+          error={errors.correo}
+          register={register("correo", {
             required: "El email es obligatorio",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Introduce un email válido",
+              message: "Introduce un correo válido",
             },
           })}
         />

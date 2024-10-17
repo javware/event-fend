@@ -1,19 +1,31 @@
 import { useForm } from "react-hook-form"
 import { UserLoginForm } from "../../types"
 import Input from "../../components/Input"
-import { Link } from "react-router-dom"
-
+import { Link, useNavigate } from "react-router-dom"
+import { useMutation } from "@tanstack/react-query"
+import { authenticateUser } from "../../api/AuthAPI"
+import { useToasts } from "../../hooks/useToasts"
 export default function LoginView() {
-
+    const { ErrorToast } = useToasts();
+    const navigate = useNavigate()
     const initialValues: UserLoginForm = {
-        email: '',
+        correo: '',
         password: '',
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
 
-    const handleLogin = (formData: UserLoginForm) => {
-        console.log(formData)
-    }
+    const { mutate } = useMutation({
+        mutationFn: authenticateUser,
+        onError: (error) => {
+            ErrorToast(error.message)
+        },
+        onSuccess: () => {
+            const backPath = new URLSearchParams(location.search).get('backPath') || '/'
+            navigate(backPath);
+        }
+    })
+
+    const handleLogin = (formData: UserLoginForm) => mutate(formData)
 
     return (
         <>
@@ -24,10 +36,10 @@ export default function LoginView() {
                     <span className=" text-red-600 font-bold"> Ingresar</span>
                 </p>
 
-                <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 p-6 " noValidate>
-                    <Input id="email" label="Correo electrónico" type="email" placeholder="email"
-                        error={errors.email}
-                        register={register("email", {
+                <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 pt-6 p-4 lg:p-6 " noValidate>
+                    <Input id="correo" label="Correo electrónico" type="correo" placeholder="correo"
+                        error={errors.correo}
+                        register={register("correo", {
                             required: "El email es obligatorio",
                             pattern: {
                                 value: /\S+@\S+\.\S+/,

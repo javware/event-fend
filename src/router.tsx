@@ -5,6 +5,7 @@ import AuthLayout from './layouts/AuthLayout'
 import ForgotPasswordView from './views/auth/ForgotPasswordView'
 import NewPasswordView from './views/auth/NewPasswordView'
 import Home from './views/Home'
+import Spinner from './components/Spinner'
 
 const AppLayout = lazy(() => import('./layouts/AppLayout'))
 
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: (
-            <Suspense fallback={<div>Cargando layout...</div>}>
+            <Suspense fallback={ <Spinner />}>
                 <AppLayout />
             </Suspense>
         ),
