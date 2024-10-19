@@ -1,27 +1,43 @@
 import { PinInput, PinInputField } from '@chakra-ui/pin-input';
 import { Link } from 'react-router-dom';
-import { ConfirmToken } from '../../types';
+import { ValidateTokenForm } from '../../types';
+import { useMutation } from '@tanstack/react-query';
+import { validateToken } from '../../api/AuthAPI';
+import { useToasts } from '../../hooks/useToasts';
 
 type NewPasswordTokenProps = {
-    token: ConfirmToken['token']
+    token: ValidateTokenForm['token']
+    codigo: ValidateTokenForm['codigo']
     setToken: React.Dispatch<React.SetStateAction<string>>
+    setIsValidToken: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function NewPasswordToken({ token, setToken }: NewPasswordTokenProps) {
-    const handleChange = (token: ConfirmToken['token']) => {
-        setToken(token)
-    }
-    const handleComplete = (token: ConfirmToken['token']) => {
-        console.log("completo", token)
+export default function NewPasswordToken({ token, codigo, setToken, setIsValidToken }: NewPasswordTokenProps) {
+    const { ErrorToast, SuccessToast } = useToasts();
+    const { mutate } = useMutation({
+        mutationFn: validateToken,
+        onError: (error) => {
+            ErrorToast(error.message)
+        },
+        onSuccess: (data) => {
+            SuccessToast(data.message)
+            setIsValidToken(true)
+            localStorage.removeItem('TOKEN_PASSWORD')
+        }
 
+    })
+
+    const handleChange = (codigo: ValidateTokenForm['codigo']) => {
+        setToken(codigo)
     }
+    const handleComplete = (codigo: ValidateTokenForm['codigo']) => mutate({ token, codigo })
 
     return (
         <>
             <form className="space-y-6 mt-3">
                 <label className="font-normal text-2xl text-center block">Código de 6 dígitos</label>
                 <div className="flex justify-center gap-3">
-                    <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
+                    <PinInput value={codigo} onChange={handleChange} onComplete={handleComplete}>
                         <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border focus:border-gray-500 focus:outline-none placeholder-white" />
                         <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border focus:border-gray-500 focus:outline-none placeholder-white" />
                         <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border focus:border-gray-500 focus:outline-none placeholder-white" />

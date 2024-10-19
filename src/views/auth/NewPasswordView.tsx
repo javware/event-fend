@@ -1,14 +1,14 @@
 import { useState } from "react";
 import NewPasswordToken from "../../components/auth/NewPasswordToken";
 import NewPasswordForm from "../../components/auth/NewPasswordForm";
-import { ConfirmToken } from "../../types";
+import { ValidateTokenForm } from "../../types";
+
 
 export default function NewPasswordView() {
-    const [token, setToken] = useState<ConfirmToken['token']>('')
+    const token = localStorage.getItem('TOKEN_PASSWORD') || ''
+    const [codigo, setToken] = useState<ValidateTokenForm['codigo']>('')
     const [isValidToken, setIsValidToken] = useState(false)
-    console.log(setIsValidToken)
-    // const navigate = useNavigate()
-
+    
     return (
         <>
             <h1 className="text-5xl font-black text-center">Reestablecer Password</h1>
@@ -18,7 +18,7 @@ export default function NewPasswordView() {
             </p>
 
             {!isValidToken ?
-                <NewPasswordToken token={token} setToken={setToken} /> :
+                <NewPasswordToken token={token} codigo={codigo} setToken={setToken} setIsValidToken={setIsValidToken} /> :
                 <NewPasswordForm />}
 
         </>

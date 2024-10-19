@@ -21,10 +21,17 @@ export const useToasts = () => {
 
     const SuccessToast = (message: string): void => {
         toast.success(message, {
-            style: {
-                backgroundColor: 'green',
-                color: 'white',
-            },
+            unstyled: false,
+            classNames: {
+                toast: 'bg-white shadow shadow-lg',
+                title: 'text-green-600 font-semibold',
+                description: 'text-green-600',
+                actionButton: 'bg-zinc-600',
+                cancelButton: 'bg-orange-600',
+                closeButton: 'bg-lime-600',
+                icon: 'toast-icon text-green-600'
+              },
+            position: 'top-right'
         });
     };
 

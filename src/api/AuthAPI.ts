@@ -1,10 +1,10 @@
 import { isAxiosError } from "axios"
 import api from "../lib/axios"
-import { ForgotPasswordForm, NewPasswordForm, UserLoginForm, userShema } from "../types"
+import { ForgotPasswordForm, ValidateTokenForm, UserLoginForm, userShema } from "../types"
 
 export async function authenticateUser(formData: UserLoginForm) {
     try {
-        const {data} = await api.post('/auth/login/', formData)
+        const { data } = await api.post('/auth/login/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -14,7 +14,7 @@ export async function authenticateUser(formData: UserLoginForm) {
                 }
             }
             throw new Error(error.response.data.error)
-        }else {
+        } else {
             throw new Error("Error de red o CORS");
         }
     }
@@ -23,6 +23,7 @@ export async function authenticateUser(formData: UserLoginForm) {
 export async function forgotPasswordUser(formData: ForgotPasswordForm) {
     try {
         const { data } = await api.post('/auth/reestablece/', formData)
+        localStorage.setItem('TOKEN_PASSWORD', data.token)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -31,9 +32,9 @@ export async function forgotPasswordUser(formData: ForgotPasswordForm) {
     }
 }
 
-export async function newPasswordUser(formData: NewPasswordForm) {
+export async function validateToken(formData: ValidateTokenForm) {
     try {
-        const { data } = await api.post('/auth/new_password/', formData)
+        const { data } = await api.post('/auth/verificar/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {

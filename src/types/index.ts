@@ -6,12 +6,13 @@ export const authSchema = z.object({
     password: z.string(),
     password_confirmation: z.string(),
     token: z.string(),
+    codigo: z.string(),
 })
 
 export type Auth = z.infer<typeof authSchema>
-export type ConfirmToken = Pick<Auth, 'token'>
 export type UserLoginForm = Pick<Auth, 'correo' | 'password'>
 export type ForgotPasswordForm = Pick<Auth, 'correo'>
+export type ValidateTokenForm = Pick<Auth, 'token' | 'codigo'>
 export type NewPasswordForm = Pick<Auth, 'correo' | 'password' | 'password_confirmation'>
 
 /** Users */
