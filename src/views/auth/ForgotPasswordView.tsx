@@ -2,35 +2,31 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ForgotPasswordForm } from "../../types";
 import Input from "../../components/Input";
+import { useMutation } from "@tanstack/react-query";
+import { forgotPasswordUser } from "../../api/AuthAPI";
+import { useToasts } from "../../hooks/useToasts";
 // import { useMutation } from "@tanstack/react-query";
 // import { forgotPasswordUser } from "../../api/AuthAPI";
 
-
 export default function ForgotPasswordView() {
-  // const navigate = useNavigate()
+  const { ErrorToast, SuccessToast } = useToasts();
   const initialValues: ForgotPasswordForm = {
     correo: ''
   }
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: initialValues });
 
-  // const { mutate } = useMutation({
-  //   mutationFn: forgotPasswordUser,
-  //   onError: (error) => {
-  //     toast.error(error.message)
-  //   },
-  //   onSuccess: (data, variables) => {
-  //     const email = variables.email
-  //     localStorage.setItem('forgotEmailUser', email);
-  //     toast.success(data.message)
-  //     navigate('/auth/new-password')
-  //   }
-  // })
+  const { mutate } = useMutation({
+    mutationFn: forgotPasswordUser,
+    onError: (error) => {
+      ErrorToast(error.message)
+    },
+    onSuccess: (data) => {
+      SuccessToast(data.message)
+      reset()
+    }
+  })
 
-  const handleForgotPassword = (formData: ForgotPasswordForm) => {
-
-    console.log(formData)
-
-  }
+  const handleForgotPassword = (formData: ForgotPasswordForm) => mutate(formData)
 
 
   return (

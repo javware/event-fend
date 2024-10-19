@@ -5,8 +5,6 @@ import { ForgotPasswordForm, NewPasswordForm, UserLoginForm, userShema } from ".
 export async function authenticateUser(formData: UserLoginForm) {
     try {
         const {data} = await api.post('/auth/login/', formData)
-        // const token = data.token.access
-        // localStorage.setItem('AUTH_TOKEN', token)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -24,7 +22,7 @@ export async function authenticateUser(formData: UserLoginForm) {
 
 export async function forgotPasswordUser(formData: ForgotPasswordForm) {
     try {
-        const { data } = await api.post('/auth/forgot_password/', formData)
+        const { data } = await api.post('/auth/reestablece/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
