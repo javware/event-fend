@@ -32,8 +32,8 @@ export default function LoginView() {
             <div className='mt-1'>
                 <h1 className="text-5xl font-black text-center">Iniciar Sesión</h1>
                 <p className="text-xl font-light mt-1 text-center ">
-                    Llena el formulario para {''}
-                    <span className=" text-red-600 font-bold"> Ingresar</span>
+                    Comienza a crear eventos  {''}
+                    <span className=" text-red-600 font-bold"> iniciando sesión</span>
                 </p>
 
                 <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 pt-6 p-4 lg:p-6 " noValidate>

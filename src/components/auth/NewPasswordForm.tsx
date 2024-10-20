@@ -1,47 +1,51 @@
 import { useForm } from "react-hook-form";
 import type { NewPasswordForm } from "../../types";
 import Input from "../Input";
+import { useMutation } from "@tanstack/react-query";
+import { newPasswordUser } from "../../api/AuthAPI";
+import { useToasts } from "../../hooks/useToasts";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPasswordForm() {
-
+    const { ErrorToast, SuccessToast } = useToasts();
+    const navigate = useNavigate()
     const initialValues: NewPasswordForm = {
-        correo: '',
-        password: '',
-        password_confirmation: '',
+        token: '',
+        newpassword: '',
+        confirm_newpassword: '',
     }
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm({ defaultValues: initialValues });
     console.log(reset)
-    // const { mutate } = useMutation({
-    //     mutationFn: newPasswordUser,
-    //     onError: (error) => {
-    //         toast.error(error.message)
-    //         navigate('/auth/forgot-password')
-    //     },
-    //     onSuccess: (data) => {
-    //         localStorage.removeItem('forgotEmailUser');
-    //         toast.success(data.message)
-    //         reset()
-    //         navigate('/auth/login')
-    //     }
-    // })
+    const { mutate } = useMutation({
+        mutationFn: newPasswordUser,
+        onError: (error) => {
+            ErrorToast(error.message)
+            navigate('/auth/forgot-password')
+        },
+        onSuccess: (data) => {
+            SuccessToast(data.message)
+            reset()
+            localStorage.removeItem('FORGOT_TOKEN_USER')
+            navigate('/auth/login')
+        }
+    })
 
     const handleNewPassword = (formData: NewPasswordForm) => {
         const data = {
             ...formData,
-            email: localStorage.getItem('forgotEmailUser') || formData.correo,
+            token: localStorage.getItem('FORGOT_TOKEN_USER') || formData.token,
         }
-        console.log(data)
-        // mutate(data)
+        mutate(data)
     }
 
-    const password = watch('password');
+    const password = watch('newpassword');
 
     return (
         <form onSubmit={handleSubmit(handleNewPassword)} className="space-y-4 pt-6 p-4 lg:p-6" noValidate >
-            <Input id="password" label="Contraseña" type="password" placeholder="Password de Registro"
-                error={errors.password}
-                register={register("password", {
+            <Input id="newpassword" label="Contraseña" type="password" placeholder="Password de Registro"
+                error={errors.newpassword}
+                register={register("newpassword", {
                     required: "El Password es obligatorio",
                     minLength: {
                         value: 8,
@@ -50,9 +54,9 @@ export default function NewPasswordForm() {
                 })}
             />
 
-            <Input id="password_confirmation" label="Repetir Contraseña" type="password" placeholder="Repite Password de Registro"
-                error={errors.password_confirmation}
-                register={register("password_confirmation", {
+            <Input id="confirm_newpassword" label="Repetir Contraseña" type="password" placeholder="Repite Password de Registro"
+                error={errors.confirm_newpassword}
+                register={register("confirm_newpassword", {
                     required: "Repetir Password es obligatorio",
                     validate: value => value === password || 'Los Passwords no son iguales'
                 })}

@@ -21,7 +21,6 @@ export default function ForgotPasswordView() {
       ErrorToast(error.message)
     },
     onSuccess: (data) => {
-      console.log(data)
       SuccessToast(data.message)
       reset()
     }

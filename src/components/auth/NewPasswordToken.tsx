@@ -2,7 +2,7 @@ import { PinInput, PinInputField } from '@chakra-ui/pin-input';
 import { Link } from 'react-router-dom';
 import { ValidateTokenForm } from '../../types';
 import { useMutation } from '@tanstack/react-query';
-import { validateToken } from '../../api/AuthAPI';
+import { validateTokenUser } from '../../api/AuthAPI';
 import { useToasts } from '../../hooks/useToasts';
 
 type NewPasswordTokenProps = {
@@ -15,7 +15,7 @@ type NewPasswordTokenProps = {
 export default function NewPasswordToken({ token, codigo, setToken, setIsValidToken }: NewPasswordTokenProps) {
     const { ErrorToast, SuccessToast } = useToasts();
     const { mutate } = useMutation({
-        mutationFn: validateToken,
+        mutationFn: validateTokenUser,
         onError: (error) => {
             ErrorToast(error.message)
         },
