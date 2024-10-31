@@ -25,7 +25,7 @@ export default function Table<T,>({ data, columns, globalFilter, isLoading }: Ta
         },
         initialState: {
             pagination: {
-                pageSize: 5
+                pageSize: 10
             }
         },
         getCoreRowModel: getCoreRowModel(),
@@ -35,13 +35,26 @@ export default function Table<T,>({ data, columns, globalFilter, isLoading }: Ta
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: setSorting
     })
+    const noResults = table.getRowModel().rows.length === 0;
 
     return (
         <>
             <div className='w-full overflow-x-auto scrollbar-thin'>
                 <table className='table-auto w-full min-w-[560px]'>
                     <Thead table={table} />
-                    <Tbody table={table} isLoading={isLoading} />
+                    {noResults ? (
+                        <tbody>
+                            <tr>
+                                <td colSpan={table.getAllColumns().length} className="text-center text-gray-500 py-4">
+                                    No se encontraron resultados
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    ) : (
+                        <Tbody table={table} isLoading={isLoading} />
+                    )}
+
                 </table>
             </div>
             {!isLoading && <Pagination table={table} />}

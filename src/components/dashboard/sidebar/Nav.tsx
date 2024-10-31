@@ -16,14 +16,28 @@ export default function Nav({ Icon, name, to }: NavProps) {
         <Link to={to} className="w-full">
             <div
                 className={classNames(
-                    'flex gap-2 py-1.5 px-2 items-center rounded-lg transition-all duration-300 ease-in-out',
+                    'flex gap-2 py-1.5 px-2 items-center rounded-full transition-all duration-300 ease-in-out',
                     isSelected
-                        ? 'bg-cyan-500/10 font-semibold text-gray-600'
-                        : 'text-gray-600 hover:bg-cyan-500/10 hover:text-gray-600'
+                        ? 'bg-white font-semibold text-sky-600'
+                        : 'text-white hover:bg-white hover:text-sky-600'
                 )}
             >
-                <Icon className="text-red-600 mx-2 text-4xl" />
-                <span className="w-full">{name}</span>
+                <Icon className={classNames(
+                    "mx-2 text-4xl",
+                    isSelected
+                        ? ' text-sky-600'
+                        : ' hover:text-sky-600'
+                )} />
+                <span
+                    className={classNames(
+                        'w-full ',
+                        isSelected
+                            ? 'text-sky-600'
+                            : 'hover:text-sky-600'
+                    )}
+                >
+                    {name}
+                </span>
                 <RiArrowRightSLine className="text-4xl" />
             </div>
         </Link>

@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { Toaster } from 'sonner'
 import { Outlet } from 'react-router-dom'
-// import { ToastContainer } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css'
 // import { useAuth } from '../hooks/useAuth';
-// import Spinner from '../components/Spinner';
 import Sidebar from '../components/dashboard/sidebar/Sidebar';
 import Header from '../components/dashboard/header/Header';
 import Footer from '../components/dashboard/footer/Footer';
@@ -13,13 +11,7 @@ import { useWindowSize } from '../hooks/useWindowSize';
 export default function AppLayout() {
     const size = useWindowSize();
     const [closeSidebar, setCloseSidebar] = useState<boolean>(true)
-    // const { data, isError, isLoading } = useAuth()
-    // if (isLoading) return <Spinner />
 
-    // if (isError) {
-    //     const redirectPath = window.location.pathname
-    //     return <Navigate to={`/auth/login?backPath=${redirectPath}`} />
-    // }
     return (
 
         <>
@@ -33,13 +25,12 @@ export default function AppLayout() {
                         })}
                 >
                     <Header name={"fff"} setCloseSidebar={setCloseSidebar} closeSidebar={closeSidebar} />
-                    <div className='px-5 py-5 bg-gray-100/60'>
+                    <div className='px-5 py-5 bg-gray-100/60  min-h-[79vh]'>
                         <Outlet />
                     </div>
                     <Footer />
-                    {/* <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} /> */}
                 </div>
-
+                <Toaster />
             </main>
         </>
 

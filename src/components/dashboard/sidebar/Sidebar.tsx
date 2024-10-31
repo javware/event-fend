@@ -18,7 +18,7 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
     <>
       <div
         className={classNames(
-          'fixed z-30 border-r p-4 bg-white transition-transform transform duration-300',
+          'fixed z-30 border-r p-4 bg-primary transition-transform transform duration-300 rounded-tr-[3.1rem]',
           {
             'w-screen': size?.width && size.width < 780 && !closeSidebar, // Pantallas pequeñas
             'md:w-[18.5rem]': closeSidebar || size?.width && size.width >= 780,// Pantallas medianas y grandes
@@ -30,23 +30,23 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
         <div className='flex items-center justify-between text-2xl py-3'>
           <div className='flex items-center gap-2'>
             <img src="/logo1.png" className='w-10' alt="" />
-            <h1 className="font-bold text-4xl"> EventSoft </h1>
+            <h1 className="font-bold text-4xl text-white"> EventSoft </h1>
           </div>
           <div className='p-2 rounded-full text-white shadow shadow-gray-300 cursor-pointer md:hidden ' onClick={() => setCloseSidebar(true)}>
             <LuX className='w-6 h-6 text-black' />
           </div>
         </div>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 text-white'>
           <div>
             <h1 className='pt-6 text-2xl font-semibold'>¡Hola, Javier Azaña!</h1>
             <span className='text-sm'>Estamos aquí para ayudarte</span>
           </div>
           <nav className='pr-1 flex flex-col gap-1 overflow-y-auto h-[calc(100vh-11rem)] scrollbar-hide'>
             <Nav Icon={RiHome3Line} name='Inicio' to='/' />
+            <Nav Icon={GoCopilot} name='Dirección' to='/address' />
+            <Nav Icon={TbMessage2} name='Servicio' to='/service' />
             <Nav Icon={RxLayers} name='Events' to='/eventos' />
-            <Nav Icon={GoCopilot} name='Gallerys' to='#' />
-            <Nav Icon={RxCalendar} name='Calendar' to='#' />
-            <Nav Icon={TbMessage2} name='Message' to='#' />
+            <Nav Icon={RxCalendar} name='Servicio' to='#' />
             <Nav Icon={GoCopilot} name='Seguridad' to='#' />
 
           </nav>

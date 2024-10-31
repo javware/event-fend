@@ -1,18 +1,13 @@
 import { rankItem } from "@tanstack/match-sorter-utils";
 
-
-
 export const fuzzyFilter = (row: any, columnId: string, value: string, addMeta: (meta: { itemRank: any }) => void) => {
-    const cellValue = row.getValue(columnId)
-    const itemRank = rankItem(cellValue, value)
+    const combinedValue = Object.values(row.original)
+        .filter(val => typeof val === 'string' || typeof val === 'number') // Filtrar solo valores tipo string y número
+        .join(' ')
+        .toLowerCase();
 
-    // Filtrado exacto si el valor es 'activo' o 'inactivo'
-    if (value === 'Activo' || value === 'Inactivo') {
-        const isMatch = cellValue === value;
-        addMeta({ itemRank: { rankedValue: cellValue, passed: isMatch } });
-        return isMatch;
-    }
+    const itemRank = rankItem(combinedValue, value.toLowerCase());
+    addMeta({ itemRank });
 
-    addMeta({ itemRank })
-    return itemRank.passed
+    return itemRank.passed;
 }

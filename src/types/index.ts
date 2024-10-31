@@ -1,4 +1,6 @@
 import { z } from 'zod'
+import { AddressSchema } from '../schema/address_schema'
+import { ServiceSchema } from '../schema/service_schema'
 
 /** Auth & User **/
 export const authSchema = z.object({
@@ -27,15 +29,10 @@ export const userShema = authSchema.pick({
 export type User = z.infer<typeof userShema>
 
 
-// types/index.ts
-export const tableSchema = z.object({
-    accessorKey: z.string(), // La clave para acceder a los datos (como 'name', 'status', etc.)
-    label: z.string(),   // El nombre de la columna que se mostrará
-    enableSorting: z.boolean(), // Sorting habilitado o no (opcional)
-})
-export type Table = z.infer<typeof tableSchema>
-export type Columns = Pick<Table, 'accessorKey' | 'enableSorting' | 'label'>
+/** Address **/
+export type Address = z.infer<typeof AddressSchema>
+export type AddressFormData = Pick<Address, 'nombre_direccion' | 'descripcion_dire' | 'numero_piso' | 'aforo_max'>
 
-export type RowData = {
-    [key: string]: any;
-};
+/** Service **/
+export type Service = z.infer<typeof ServiceSchema>
+export type ServiceFormData = Pick<Service, 'nombre_servicio'>

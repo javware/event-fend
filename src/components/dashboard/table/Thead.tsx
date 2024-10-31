@@ -8,9 +8,9 @@ type TheadProps = {
 
 export default function Thead({ table }: TheadProps) {
     return (
-        <thead className='bg-cyan-500/10'>
+        <thead className='bg-sky-600/10'>
             {table.getHeaderGroups().map(headerGroup => (
-                <tr key={headerGroup.id} className="text-sm text-gray-600" >
+                <tr key={headerGroup.id} className="text-sm text-sky-600" >
                     {headerGroup.headers.map((header, index, headersArray) => (
                         <th key={header.id} className={classNames('py-2 px-4 ',
                             {

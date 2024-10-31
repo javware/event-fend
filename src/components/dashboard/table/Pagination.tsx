@@ -95,6 +95,7 @@ export default function Pagination({ table }: PaginationProps) {
                 {/* select */}
                 <div>
                     <select
+                        value={table.getState().pagination.pageSize}
                         className='text-gray-600 rounded-xl border  outline-none p-1'
                         onChange={e => {
                             table.setPageSize(Number(e.target.value))
