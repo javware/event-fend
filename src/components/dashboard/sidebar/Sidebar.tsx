@@ -18,7 +18,7 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
     <>
       <div
         className={classNames(
-          'fixed z-30 border-r p-4 bg-primary transition-transform transform duration-300 rounded-tr-[3.1rem]',
+          'fixed z-30 border-r p-4 bg-primary transition-transform transform duration-300',
           {
             'w-screen': size?.width && size.width < 780 && !closeSidebar, // Pantallas pequeñas
             'md:w-[18.5rem]': closeSidebar || size?.width && size.width >= 780,// Pantallas medianas y grandes
