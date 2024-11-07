@@ -40,7 +40,7 @@ export default function ListServiceView() {
                         className='py-2 px-8 rounded-lg h-9 text-sm text-gray-600 bg-gray-100 outline-none'
                         placeholder='Escribe para buscar...'
                     />
-                    <Link to="/service/create" className="flex items-center bg-sky-600 text-white py-2 px-3 rounded-lg text-sm">
+                    <Link to="/service/create" className="flex items-center bg-primary py-2 px-4 rounded-full text-white  text-sm cursor-pointer">
                         Agregar
                     </Link>
 

@@ -14,6 +14,14 @@ import ListServiceView from './views/service/ListServiceView'
 import CreateServiceView from './views/service/CreateServiceView'
 import EditServiceView from './views/service/EditServiceView'
 import DeleteServiceView from './views/service/DeleteServiceView'
+import ListCategoryView from './views/category/ListCategoryView'
+import DeleteCategoryView from './views/category/DeleteCategoryView'
+import EditCategoryView from './views/category/EditCategoryView'
+import CreateCategoryView from './views/category/CreateCategoryView'
+import ListSubCategoryView from './views/subcategory/ListSubCategoryView'
+import CreateSubCategoryView from './views/subcategory/CreateSubCategoryView'
+import EditSubCategoryView from './views/subcategory/EditSubCategoryView'
+import DeleteSubCategoryView from './views/subcategory/DeleteSubCategoryView'
 
 const AppLayout = lazy(() => import('./layouts/AppLayout'))
 
@@ -82,6 +90,39 @@ export const router = createBrowserRouter([
             {
                 path: 'service/:serviceId/delete',
                 element: <DeleteServiceView />,
+            },
+            {
+                path: 'category/',
+                element: <ListCategoryView />,
+            },
+            {
+                path: 'category/create',
+                element: <CreateCategoryView />,
+            },
+            {
+                path: 'category/:categoryId/edit',
+                element: <EditCategoryView />,
+            },
+            {
+                path: 'category/:categoryId/delete',
+                element: <DeleteCategoryView />,
+            },
+
+            {
+                path: 'subcategory/',
+                element: <ListSubCategoryView />,
+            },
+            {
+                path: 'subcategory/create',
+                element: <CreateSubCategoryView />,
+            },
+            {
+                path: 'subcategory/:subcategoryId/edit',
+                element: <EditSubCategoryView />,
+            },
+            {
+                path: 'subcategory/:subcategoryId/delete',
+                element: <DeleteSubCategoryView />,
             },
 
         ]

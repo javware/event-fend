@@ -45,9 +45,10 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
             <Nav Icon={RiHome3Line} name='Inicio' to='/' />
             <Nav Icon={GoCopilot} name='Dirección' to='/address' />
             <Nav Icon={TbMessage2} name='Servicio' to='/service' />
-            <Nav Icon={RxLayers} name='Events' to='/eventos' />
-            <Nav Icon={RxCalendar} name='Servicio' to='#' />
-            <Nav Icon={GoCopilot} name='Seguridad' to='#' />
+            <Nav Icon={RxLayers} name='Categoría' to='/category' />
+            <Nav Icon={GoCopilot} name='Tipo de Eventos' to='/subcategory' />
+            <Nav Icon={RxCalendar} name='Evento' to='#' />
+            <Nav Icon={RxCalendar} name='Seguridad' to='#' />
 
           </nav>
         </div>

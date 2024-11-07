@@ -1,6 +1,8 @@
 import { z } from 'zod'
 import { AddressSchema } from '../schema/address_schema'
 import { ServiceSchema } from '../schema/service_schema'
+import { CategorySchema } from '../schema/category_schema'
+import { SubCategorySchema } from '../schema/subcategory_schema'
 
 /** Auth & User **/
 export const authSchema = z.object({
@@ -36,3 +38,11 @@ export type AddressFormData = Pick<Address, 'nombre_direccion' | 'descripcion_di
 /** Service **/
 export type Service = z.infer<typeof ServiceSchema>
 export type ServiceFormData = Pick<Service, 'nombre_servicio'>
+
+/** Category **/
+export type Category = z.infer<typeof CategorySchema>
+export type CategoryFormData = Pick<Category, 'nombre_categoria'>
+
+/** SubCategory **/
+export type SubCategory = z.infer<typeof SubCategorySchema>
+export type SubCategoryFormData = Pick<SubCategory, 'nombre_cate_evento' | 'id_categoria'>

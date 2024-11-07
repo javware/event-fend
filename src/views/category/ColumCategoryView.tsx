@@ -1,16 +1,15 @@
-// ColumServiceView.ts
 import { ColumnDef } from '@tanstack/react-table';
 import { LuEye, LuPenSquare, LuPower, LuTrash2 } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
-import { Service } from '../../types';
-import { updateStatusService } from '../../api/ServiceAPI'; // Ajusta la ruta según corresponda
+import { Category } from '../../types';
+import { updateStatusCategory } from '../../api/CategoryAPI'; // Ajusta la ruta según corresponda
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useToasts } from '../../hooks/useToasts';
 import Spinner from '../../components/Spinner';
 import classNames from 'classnames';
 
-export const ColumServiceView: ColumnDef<Service>[] = [
-  { accessorKey: 'nombre_servicio', header: 'Servicio', enableSorting: true },
+export const ColumCategoryView: ColumnDef<Category>[] = [
+  { accessorKey: 'nombre_categoria', header: 'Categoría', enableSorting: true },
   {
     accessorKey: 'ind_activo',
     header: 'Estado',
@@ -42,12 +41,12 @@ export const ColumServiceView: ColumnDef<Service>[] = [
       const { ErrorToast, SuccessToast } = useToasts()
 
       const { mutate, isPending } = useMutation({
-        mutationFn: updateStatusService,
+        mutationFn: updateStatusCategory,
         onError: (error) => {
           ErrorToast(error.message)
         },
         onSuccess: (data) => {
-          queryClient.invalidateQueries({ queryKey: ['service'] })
+          queryClient.invalidateQueries({ queryKey: ['category'] })
           SuccessToast(data.message);
         }
       })
@@ -60,13 +59,13 @@ export const ColumServiceView: ColumnDef<Service>[] = [
             </button>
           ) : (
             <>
-              <Link to={`/service/${row.original.id}/edit`} className="text-primary">
+              <Link to={`/category/${row.original.id}/edit`} className="text-primary">
                 <LuPenSquare strokeWidth={2.1} className="w-5 h-5" />
               </Link>
-              <Link to={`/service/${row.original.id}/view`} className="text-green-600">
+              <Link to={`/category/${row.original.id}/view`} className="text-green-600">
                 <LuEye strokeWidth={2.1} className="w-5 h-5" />
               </Link>
-              <Link to={`/service/${row.original.id}/delete`} className="text-red-600">
+              <Link to={`/category/${row.original.id}/delete`} className="text-red-600">
                 <LuTrash2 strokeWidth={2.1} className="w-5 h-5" />
               </Link>
             </>
