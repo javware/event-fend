@@ -28,7 +28,7 @@ export default function SelectBasic({ id, label, options, error, register, disab
                         }
                     )}
                     {...register}
-                    defaultValue={options[0]?.value}
+                    defaultValue={options[0]?.value || ""}
                 >
                     {options.map((option) => (
                         <option key={option.value} value={option.value}>

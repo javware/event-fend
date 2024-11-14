@@ -1,8 +1,6 @@
-import { RxCalendar, RxLayers } from 'react-icons/rx';
-import { GoCopilot } from 'react-icons/go';
-import { TbMessage2 } from 'react-icons/tb';
-import { RiHome3Line } from 'react-icons/ri';
-import { LuX } from 'react-icons/lu';
+import { RxLayers } from 'react-icons/rx'
+import { RiHome3Line } from 'react-icons/ri'
+import { LuCalendarSearch, LuLayoutList, LuListTree, LuMapPin, LuSettings, LuX } from 'react-icons/lu';
 import Nav from './Nav';
 import { useWindowSize } from '../../../hooks/useWindowSize';
 import classNames from 'classnames';
@@ -43,12 +41,12 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
           </div>
           <nav className='pr-1 flex flex-col gap-1 overflow-y-auto h-[calc(100vh-11rem)] scrollbar-hide'>
             <Nav Icon={RiHome3Line} name='Inicio' to='/' />
-            <Nav Icon={GoCopilot} name='Dirección' to='/address' />
-            <Nav Icon={TbMessage2} name='Servicio' to='/service' />
+            <Nav Icon={LuMapPin} name='Dirección' to='/address' />
+            <Nav Icon={LuLayoutList} name='Servicio' to='/service' />
             <Nav Icon={RxLayers} name='Categoría' to='/category' />
-            <Nav Icon={GoCopilot} name='Tipo de Eventos' to='/subcategory' />
-            <Nav Icon={RxCalendar} name='Evento' to='#' />
-            <Nav Icon={RxCalendar} name='Seguridad' to='#' />
+            <Nav Icon={LuListTree} name='Tipo de Eventos' to='/subcategory' />
+            <Nav Icon={LuCalendarSearch} name='Evento' to='/event' />
+            <Nav Icon={LuSettings} name='Seguridad' to='#' />
 
           </nav>
         </div>

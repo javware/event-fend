@@ -1,3 +1,172 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__month-text,
+.react-datepicker__year-text {
+    text-transform: capitalize;
+}
+
+.scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #E4EBE7 #fff;
+}
+  
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    /* Ancho del scrollbar en navegadores basados en WebKit */
+}
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #686868;
+    /* Color del pulgar */
+    border-radius: 10px;
+    /* Radio de los bordes del pulgar */
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background-color: #d1d5db;
+    /* Color de la pista */
+  }
+  
+  
+  /* Oculta el scrollbar por defecto */
+  .scrollbar-hide::-webkit-scrollbar {
+    width: 5px;
+    /* Tamaño del scrollbar, inicial mínimo */
+    opacity: 0;
+    /* Inicia invisible */
+    transition: opacity 0.3s ease-in-out;
+    /* Transición suave para la opacidad */
+  }
+  
+  /* Estilos para Firefox */
+  .scrollbar-hide {
+    scrollbar-width: thin;
+    /* Tamaño del scrollbar en Firefox */
+    scrollbar-color: transparent transparent;
+    /* Oculta los colores del scrollbar */
+    transition: scrollbar-color 0.3s ease-in-out;
+  }
+  
+  /* Cuando se hace hover, muestra el scrollbar */
+  .scrollbar-hide:hover::-webkit-scrollbar {
+    opacity: 1;
+  }
+  
+  /* Estilos del thumb (pulgar) */
+  .scrollbar-hide::-webkit-scrollbar-thumb {
+    background-color: #686868;
+    /* Color del pulgar */
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    /* Transición suave para el color */
+  }
+  
+  .scrollbar-hide:hover::-webkit-scrollbar-thumb {
+    background-color: #686868;
+    /* Color visible del pulgar al hacer hover */
+  }
+  
+  /* Para Firefox: cambia el color cuando se hace hover */
+  .scrollbar-hide:hover {
+    scrollbar-color: #E4EBE7 #fff;
+    /* Color del pulgar y la pista */
+  }
+  
+  
+  /* calendar */
+  .fc-theme-standard .fc-scrollgrid {
+    border: 3px solid var(--fc-border-color);
+    border-radius: 8px;
+  }
+  
+  .fc-col-header-cell {
+    color: #0284c7;
+    background-color: rgb(2 132 199 / 0.1);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  
+  .fc .fc-scrollgrid-section-sticky>* {
+    background: #E8FBFD;
+    padding: 4px 1px 1px 3px;
+    border-radius: 8px;
+  }
+  
+  .fc .fc-scrollgrid-section > *{
+    border:none;
+  }
+  .fc-theme-standard td {
+    border: 2px solid rgb(243, 243, 243);
+    border-radius: 0 0 12px 12px ;
+  }
+  
+  .fc-theme-standard th {
+    border: 0px solid rgb(243, 243, 243);
+  }
+  
+  .fc .fc-daygrid-day-frame {
+    border-radius: 8px;
+  }
+  
+  .fc-theme-standard .fc-scrollgrid {
+    border: 2px solid rgb(243, 243, 243);
+    border-radius: 8px;
+    padding: 5px;
+  }
+  
+  /* .fc .fc-scrollgrid table {
+    border-left-style: none;
+    border-top-style: none
+  } */
+  
+  .fc .fc-scrollgrid,
+  .fc .fc-scrollgrid table {
+    width: 100% !important;
+  }
+  
+  
+  .fc .fc-button-group{
+    background: #F2F3F5 !important;
+    border-radius: 8px !important;
+  }
+  
+  .fc-toolbar-title{
+    text-transform: uppercase;
+    font-size: 1.50rem !important;
+  }
+  /* Botón "Hoy" */
+  .fc .fc-toolbar .fc-today-button {
+    padding: 4px 8px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Botones de vista "Mes", "Semana" y "Día" */
+  .fc .fc-toolbar .fc-prev-button,
+  .fc .fc-toolbar .fc-next-button,
+  .fc .fc-toolbar .fc-dayGridMonth-button,
+  .fc .fc-toolbar .fc-timeGridWeek-button,
+  .fc .fc-toolbar .fc-timeGridDay-button {
+    padding: 6px 18px !important;
+    font-size: 0.85rem !important;
+    background: #F2F3F5 !important;
+    border: none !important;
+    color: #686868;
+    border-radius: 8px;
+  }
+  
+  .fc .fc-toolbar button.fc-button-active {
+    background-color: #0284c7 !important;
+    color: white !important;
+  }
+  
+  .fc .fc-toolbar button:focus,
+  .fc .fc-toolbar button:active {
+    outline: none !important;
+    box-shadow: none !important; /* Sombra personalizada */
+  }

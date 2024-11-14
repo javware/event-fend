@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { FieldError, UseFormGetValues, UseFormRegisterReturn, UseFormSetValue, UseFormTrigger } from 'react-hook-form';
 import { Combobox } from '@headlessui/react';
-import CategoryModal from './subcategory/CategoryModal';
 import { MdExpandMore } from 'react-icons/md';
 import classNames from 'classnames';
-import { Category, SubCategoryFormData } from '../types';
+import { Address, AddressFormData, EventFormData, } from '../../types';
 import { LuCheckCircle } from 'react-icons/lu';
+import AddressModal from '../../components/event/AddressModal';
 
-type SelectBasicWithModalProps = {
+type SelectAddressWithModalProps = {
     id: string
     label: string
-    options: Category[] | undefined
+    options: Address[] | undefined
     error?: FieldError
     register: UseFormRegisterReturn
     disabled?: boolean
     trigger: UseFormTrigger<any>
-    setValue: UseFormSetValue<SubCategoryFormData>
-    getValues: UseFormGetValues<SubCategoryFormData>
+    setValue: UseFormSetValue<EventFormData>
+    getValues: UseFormGetValues<EventFormData>
+    placeholder: string
 }
 
-export default function SelectBasicWithModal({ id, label, options, error, trigger, disabled, setValue, getValues }: SelectBasicWithModalProps) {
+export default function SelectAddressWithModal({ id, label, options, error, trigger, disabled, setValue, getValues, placeholder }: SelectAddressWithModalProps) {
 
     const [isOpen, setIsOpen] = useState(false)
     const [selectOptions, setSelectOptions] = useState(options)
@@ -27,8 +28,8 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
     const [query, setQuery] = useState('')
 
     useEffect(() => {
-        const foundOption = options?.find(option => option.id === getValues('id_categoria'));
-        const value = foundOption ? foundOption.nombre_categoria : ''
+        const foundOption = options?.find(option => option.id === getValues('direccion'));
+        const value = foundOption ? foundOption.nombre_direccion : ''
         setSelectedValue(value)
     }, [getValues, options]);
 
@@ -39,34 +40,37 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
 
     const filterIdCategory = (value: string) => {
         if (!selectOptions) return;
-        const foundOption = selectOptions.find((option) => option.nombre_categoria === value)
+        const foundOption = selectOptions.find((option) => option.nombre_direccion === value)
 
         if (foundOption) {
-            setSelectedValue(foundOption.nombre_categoria)
-            setValue('id_categoria', foundOption.id)
-            trigger('categoria')
+            setSelectedValue(foundOption.nombre_direccion)
+            setValue('direccion', foundOption.id)
+            trigger('direccion')
         } else {
-            const newCategory: Category = {
+            const newAddress: Address = {
                 id: (selectOptions.reduce((maxId, option) => Math.max(maxId, +option.id), 0) + 1).toString(),
-                nombre_categoria: value,
+                nombre_direccion: value,
+                descripcion_dire: String(),
+                numero_piso: String(),
+                aforo_max: String(),
                 fecha_inactivo: null,
                 ind_activo: "1"
             };
-            setSelectOptions([...selectOptions, newCategory])
-            setSelectedValue(newCategory.nombre_categoria)
-            setValue('id_categoria', newCategory.id)
-            trigger('categoria')
+            setSelectOptions([...selectOptions, newAddress])
+            setSelectedValue(newAddress.nombre_direccion)
+            setValue('direccion', newAddress.id)
+            trigger('direccion')
         }
 
     }
 
     const filteredOptions = query === '' ? selectOptions : selectOptions?.filter((option) =>
-        option.nombre_categoria.toLowerCase().includes(query.toLowerCase())
+        option.nombre_direccion.toLowerCase().includes(query.toLowerCase())
     )
 
-    const handleAddCategory = (newCategory: { value: string; label: string }) => {
+    const handleAddAddress = (newAddress: AddressFormData) => {
         setIsOpen(false)
-        filterIdCategory(newCategory.label)
+        filterIdCategory(newAddress.nombre_direccion)
     }
 
     const handleClickModal = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -101,7 +105,7 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
                                         'disabled:opacity-50 disabled:pointer-events-none': disabled,
                                     }
                                 )}
-                                placeholder='Busca... ó Selecciona'
+                                placeholder={placeholder}
 
                                 onChange={(e) => {
                                     setQuery(e.target.value);
@@ -119,7 +123,7 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
                                 {filteredOptions?.map((option) => (
                                     <Combobox.Option
                                         key={option.id}
-                                        value={option.nombre_categoria}
+                                        value={option.nombre_direccion}
                                         className={({ active }) =>
                                             `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? 'bg-primary text-white' : 'text-gray-900'
                                             }`
@@ -131,7 +135,7 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
                                                     className={`block truncate ${selected ? 'font-medium' : 'font-normal'
                                                         }`}
                                                 >
-                                                    {option.nombre_categoria}
+                                                    {option.nombre_direccion}
                                                 </span>
                                                 {selected ? (
                                                     <span
@@ -154,7 +158,7 @@ export default function SelectBasicWithModal({ id, label, options, error, trigge
 
             </div>
 
-            <CategoryModal isOpen={isOpen} onClose={() => setIsOpen(false)} onAddCategory={handleAddCategory} />
+            <AddressModal isOpen={isOpen} onClose={() => setIsOpen(false)} onAddAddress={handleAddAddress} />
         </>
     );
 }

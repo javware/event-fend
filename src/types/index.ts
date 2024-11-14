@@ -3,6 +3,7 @@ import { AddressSchema } from '../schema/address_schema'
 import { ServiceSchema } from '../schema/service_schema'
 import { CategorySchema } from '../schema/category_schema'
 import { SubCategorySchema } from '../schema/subcategory_schema'
+import { EventSchema } from '../schema/event_schema'
 
 /** Auth & User **/
 export const authSchema = z.object({
@@ -46,3 +47,14 @@ export type CategoryFormData = Pick<Category, 'nombre_categoria'>
 /** SubCategory **/
 export type SubCategory = z.infer<typeof SubCategorySchema>
 export type SubCategoryFormData = Pick<SubCategory, 'nombre_cate_evento' | 'id_categoria'>
+
+/** Event **/
+
+const UpdatedEventSchema = EventSchema.extend({
+    hora_inicio: z.string().optional(),
+    hora_fin: z.string().optional(),
+});
+
+export type Event = z.infer<typeof UpdatedEventSchema>
+
+export type EventFormData = Pick<Event, 'nombre_organizador' | 'apellido_organizador' | 'nombre_evento' | 'direccion' | 'correo' | 'fecha_inicio' | 'hora_inicio' | 'fecha_fin' | 'hora_fin' | 'categoria_evento' | 'tipo_evento' | 'costo' | 'estado_evento'>

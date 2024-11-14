@@ -22,6 +22,10 @@ import ListSubCategoryView from './views/subcategory/ListSubCategoryView'
 import CreateSubCategoryView from './views/subcategory/CreateSubCategoryView'
 import EditSubCategoryView from './views/subcategory/EditSubCategoryView'
 import DeleteSubCategoryView from './views/subcategory/DeleteSubCategoryView'
+import ListEventView from './views/event/ListEventView'
+import CreateEventView from './views/event/CreateEventView'
+import EditEventView from './views/event/EditEventView'
+import DeleteEventView from './views/event/DeleteEventView'
 
 const AppLayout = lazy(() => import('./layouts/AppLayout'))
 
@@ -123,6 +127,23 @@ export const router = createBrowserRouter([
             {
                 path: 'subcategory/:subcategoryId/delete',
                 element: <DeleteSubCategoryView />,
+            },
+
+            {
+                path: 'event/',
+                element: <ListEventView />,
+            },
+            {
+                path: 'event/create',
+                element: <CreateEventView />,
+            },
+            {
+                path: 'event/:eventId/edit',
+                element: <EditEventView />,
+            },
+            {
+                path: 'event/:eventId/delete',
+                element: <DeleteEventView />,
             },
 
         ]

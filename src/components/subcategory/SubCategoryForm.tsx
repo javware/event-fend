@@ -3,7 +3,7 @@ import { SubCategoryFormData } from "../../types";
 import InputBasic from "../InputBasic";
 import { useQuery } from "@tanstack/react-query";
 import { getCategory } from "../../api/CategoryAPI";
-import SelectBasicWithModal from "../SelectBasicWithModal";
+import SelectCategoryWithModal from "../../views/subcategory/SelectCategoryWithModal";
 
 type SubCategoryFormProps = {
     register: UseFormRegister<SubCategoryFormData>
@@ -17,7 +17,6 @@ export default function SubCategoryForm({ register, errors, trigger, setValue, g
     const { data } = useQuery({
         queryKey: ['category'],
         queryFn: getCategory,
-
     })
 
     return (
@@ -31,7 +30,7 @@ export default function SubCategoryForm({ register, errors, trigger, setValue, g
                     error={errors.nombre_cate_evento}
                     register={register("nombre_cate_evento", { required: "Nombre de Evento es obligatorio" })}
                 />
-                <SelectBasicWithModal
+                <SelectCategoryWithModal
                     id="id_categoria"
                     label="Categoría"
                     options={data}
