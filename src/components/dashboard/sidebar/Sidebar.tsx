@@ -2,15 +2,12 @@ import { RxLayers } from 'react-icons/rx'
 import { RiHome3Line } from 'react-icons/ri'
 import { LuCalendarSearch, LuLayoutList, LuListTree, LuMapPin, LuSettings, LuX } from 'react-icons/lu';
 import Nav from './Nav';
-import { useWindowSize } from '../../../hooks/useWindowSize';
 import classNames from 'classnames';
+import useSidebarStore from '../../../store/sidebarStore';
 
-type SiderProps = {
-  closeSidebar: boolean
-  setCloseSidebar: React.Dispatch<React.SetStateAction<boolean>>
-}
-export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
-  const size = useWindowSize();
+
+export default function Sidebar() {
+  const { isOpen, setSidebar } = useSidebarStore();
 
   return (
     <>
@@ -18,10 +15,10 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
         className={classNames(
           'fixed z-30 border-r p-4 bg-primary transition-transform transform duration-300',
           {
-            'w-screen': size?.width && size.width < 780 && !closeSidebar, // Pantallas pequeñas
-            'md:w-[18.5rem]': closeSidebar || size?.width && size.width >= 780,// Pantallas medianas y grandes
-            '-translate-x-full': !closeSidebar || size?.width && size.width < 780,
-            'translate-x-0': !closeSidebar && size?.width && size.width <= 780,
+            'w-screen': isOpen, // Pantallas pequeñas
+            'md:w-[18.5rem]': isOpen, // Pantallas medianas y grandes
+            '-translate-x-full': !isOpen, // Oculto
+            'translate-x-0': isOpen, // Visible
           }
         )}
       >
@@ -30,7 +27,7 @@ export default function Sidebar({ closeSidebar, setCloseSidebar }: SiderProps) {
             <img src="/logo1.png" className='w-10' alt="" />
             <h1 className="font-bold text-4xl text-white"> EventSoft </h1>
           </div>
-          <div className='p-2 rounded-full text-white shadow shadow-gray-300 cursor-pointer md:hidden ' onClick={() => setCloseSidebar(true)}>
+          <div className='p-2 rounded-full text-white bg-white shadow shadow-gray-300 cursor-pointer md:hidden' onClick={() => setSidebar(false)}>
             <LuX className='w-6 h-6 text-black' />
           </div>
         </div>
