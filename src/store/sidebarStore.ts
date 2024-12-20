@@ -12,7 +12,7 @@ const useSidebarStore = create<SidebarState>((set) => ({
     setSidebar: (isOpen) => set({ isOpen }),
     checkScreenSize: () => {
         const width = window.innerWidth;
-        set({ isOpen: width > 780 });
+        set({ isOpen: width > 1240 });
     },
 }));
 

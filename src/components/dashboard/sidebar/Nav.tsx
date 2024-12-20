@@ -17,11 +17,11 @@ export default function Nav({ Icon, name, to }: NavProps) {
     const size = useWindowSize()
 
     const handleOptionClick = () => {
-        if (size?.width && size.width <= 780) {
-          // Solo cerrar en modo móvil
-          setSidebar(false);
+        if (size?.width && size.width <= 1240) {
+            // Solo cerrar en modo móvil
+            setSidebar(false);
         }
-      };
+    };
 
     return (
         <Link to={to} className="w-full" onClick={handleOptionClick}>
@@ -30,7 +30,7 @@ export default function Nav({ Icon, name, to }: NavProps) {
                     'flex gap-2 py-1.5 px-2 items-center rounded-full transition-all duration-300 ease-in-out',
                     isSelected
                         ? 'bg-white font-semibold text-sky-600'
-                        : 'text-white hover:bg-white hover:text-sky-600'
+                        : 'text-white hover:bg-[#1d2252] hover:text-sky-600'
                 )}
             >
                 <Icon className={classNames(
